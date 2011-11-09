@@ -1,0 +1,14 @@
+<div id="content">
+<?php foreach($productos as $producto){?>
+<div >
+          <h3>Chompa :<?php echo $producto->get_chompaId();?> - <?php echo $producto->get_nombre();?> </h3>
+          <h4 class="critico<?php echo ($producto->get_currentStock()-$producto->get_minStock()<0)?0:1;?>">Current stock:  <?php echo $producto->get_currentStock();?> </h4>
+          
+
+          
+          <a href="ViewPHP.php?view=agregar&id=<?php echo $producto->get_chompaId();?>" class='contentA'>Add to CART</a>
+        <div class="barBottomContent"></div>
+        
+</div>        
+<?php }?>
+</div>
