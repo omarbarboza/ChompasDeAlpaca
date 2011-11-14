@@ -1,0 +1,84 @@
+<div id="content">
+    
+    
+      
+<table border="1">
+    <thead>
+        <tr>
+            <th>Chompa ID</th>
+            <th>Nombre de Chompa</th>
+            <th>Stock actual</th>
+            <th>Stock mínimo</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        
+               if(!isset($_SESSION['user']))
+    {
+    header('location:ViewPHP.php?view=login');
+
+    }
+        
+        
+        if(count($productos)!=0){  foreach($productos as $producto){?>
+        <tr>
+            <td><?php echo $producto->get_chompaId();?></td>
+            <td><?php echo $producto->get_nombre();?></td>
+            <td class="critico<?php echo ($producto->get_currentStock()-$producto->get_minStock()<0)?0:1;?>"><?php echo $producto->get_currentStock();?></td>
+            <td><?php echo $producto->get_minStock();?></td>
+            
+        </tr>
+        <?php }}?>
+    </tbody>
+</table>
+
+          
+
+          
+          
+        <div class="barBottomContent"></div>
+
+    
+    
+
+      
+<table border="1">
+    <thead>
+       
+        
+        <tr>
+            <th>Pedido Id</th>
+            <th>Fecha</th>
+            <th>Insumo</th>
+            <th>Tipo de chompa</th>
+            <th>Equivalente</th>
+            <th>Pendiente</th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+         <?php if(count($pedidos)!=0){  foreach($pedidos as $pedido){?>
+        <tr>
+            <td><?php echo $pedido->get_pedidoId();?></td>
+            <td><?php echo $pedido->get_fecha();?></td>
+            <td><?php echo $pedido->getInsumoNombre();?></td>
+            <td><?php echo $pedido->getChompaNombre();?></td>
+            <td><?php echo $pedido->getEquivalente();?></td>
+            <td><?php echo $pedido->getPendiente();?></td>
+            <td><a href="ViewPHP.php?view=autorizar&id=<?php echo $pedido->get_pedidoId();?>">Autorizar pedido y actualizar stock</a></td>
+        </tr>
+        <?php }}?>
+    </tbody>
+</table>
+
+          
+
+          
+          
+        <div class="barBottomContent"></div>
+
+</div>
